@@ -1,0 +1,1905 @@
+/* ======================================================
+THE JOURNEY TO JULY 19
+style.css
+Version 5.0
+PART 1
+====================================================== */
+
+/* ==========================
+RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#050505;
+    color:#ffffff;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    position:relative;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+button{
+    cursor:pointer;
+    border:none;
+    outline:none;
+    font-family:'Poppins',sans-serif;
+    transition:.35s;
+}
+
+button:hover{
+    transform:translateY(-4px);
+}
+
+input{
+    outline:none;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ==========================
+GLOBAL BACKGROUND
+========================== */
+
+#backgroundEffects{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:1;
+}
+
+#stars,
+#floatingParticles,
+#floatingPetals{
+    position:absolute;
+    inset:0;
+}
+
+/* ==========================
+SCENES
+========================== */
+
+.scene{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+    opacity 1s ease,
+    visibility 1s ease;
+
+    z-index:5;
+}
+
+.scene.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* ==========================
+COMMON OVERLAY
+========================== */
+
+.sceneOverlay{
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.30),
+        rgba(0,0,0,.72)
+    );
+}
+
+/* ==========================
+COMMON CONTENT
+========================== */
+
+.sceneContent{
+    position:relative;
+    z-index:5;
+
+    width:min(92%,900px);
+
+    text-align:center;
+}
+
+.chapterNumber{
+
+    font-family:'Cinzel',serif;
+
+    letter-spacing:5px;
+
+    font-size:14px;
+
+    opacity:.75;
+
+    margin-bottom:20px;
+
+}
+
+.chapterTitle{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:clamp(42px,6vw,72px);
+
+    margin-bottom:20px;
+
+}
+
+.chapterText{
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:1.8;
+
+    font-size:18px;
+
+    opacity:.82;
+
+}
+
+/* ==========================
+LOADER
+========================== */
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+
+    radial-gradient(
+        circle,
+        #35210a,
+        #050505 70%
+    );
+
+    z-index:99999;
+
+}
+
+.loaderContent{
+
+    text-align:center;
+
+}
+
+.loaderSun{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto auto 35px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+        circle,
+        #ffd86b,
+        #d99a19
+    );
+
+    box-shadow:
+    0 0 40px #ffd86b,
+    0 0 90px rgba(255,216,107,.45);
+
+    animation:pulseSun 3s infinite;
+
+}
+
+.loaderContent h1{
+
+    font-family:'Cinzel',serif;
+
+    letter-spacing:4px;
+
+    font-size:44px;
+
+}
+
+.loaderContent p{
+
+    margin-top:18px;
+
+    opacity:.75;
+
+}
+
+.loadingBar{
+
+    width:220px;
+
+    height:4px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:35px auto;
+
+}
+
+.loadingBar span{
+
+    display:block;
+
+    width:0%;
+
+    height:100%;
+
+    background:#ffd86b;
+
+    animation:loadingBar 4s forwards;
+
+}
+
+@keyframes loadingBar{
+
+    to{
+        width:100%;
+    }
+
+}
+
+@keyframes pulseSun{
+
+    50%{
+        transform:scale(1.12);
+    }
+
+}
+
+/* ==========================
+MUSIC BUTTON
+========================== */
+
+#musicButton{
+
+    position:fixed;
+
+    top:25px;
+
+    right:25px;
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    background:
+
+    rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
+
+    color:white;
+
+    font-size:22px;
+
+    z-index:999;
+
+}
+
+#musicButton:hover{
+
+    background:#ffd86b;
+
+    color:#222;
+
+}
+/* ======================================================
+STYLE.CSS
+PART 2
+SCENE 1 — INTRO
+====================================================== */
+
+#scene1{
+    background:
+    radial-gradient(circle at center,
+    #24180a 0%,
+    #0a0a0a 70%,
+    #000 100%);
+}
+
+/* ==========================
+INTRO CONTENT
+========================== */
+
+.introContent{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    z-index:5;
+}
+
+.introLine{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:clamp(22px,3vw,34px);
+
+    letter-spacing:2px;
+
+    opacity:0;
+
+    animation:introFade 2s forwards;
+}
+
+.introTitle{
+
+    margin:25px 0;
+
+    font-family:'Cinzel',serif;
+
+    font-size:clamp(60px,9vw,110px);
+
+    letter-spacing:8px;
+
+    opacity:0;
+
+    animation:introFade 2s forwards;
+}
+
+.introEnding{
+
+    margin-top:30px;
+
+    font-size:55px;
+
+    opacity:0;
+
+    animation:introFade 2s forwards;
+}
+
+/* ==========================
+ANIMATION DELAYS
+========================== */
+
+.delay1{
+    animation-delay:.5s;
+}
+
+.delay2{
+    animation-delay:1.5s;
+}
+
+.delay3{
+    animation-delay:2.8s;
+}
+
+.delay4{
+    animation-delay:4s;
+}
+
+.delay5{
+    animation-delay:5.2s;
+}
+
+/* ==========================
+BEGIN BUTTON
+========================== */
+
+#beginJourney{
+
+    margin-top:40px;
+
+    padding:16px 48px;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #d89a1f,
+        #ffd86b
+    );
+
+    color:#1b1200;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    opacity:0;
+
+    animation:
+    introFade 2s 6.5s forwards;
+
+    box-shadow:
+    0 0 25px rgba(255,215,90,.45);
+
+}
+
+#beginJourney:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.05);
+
+    box-shadow:
+    0 0 50px rgba(255,215,90,.75);
+
+}
+
+/* ==========================
+SCROLL HINT
+========================== */
+
+.scrollHint{
+
+    position:absolute;
+
+    bottom:40px;
+
+    font-size:30px;
+
+    opacity:.7;
+
+    animation:bounce 2s infinite;
+
+}
+
+/* ==========================
+INTRO ANIMATIONS
+========================== */
+
+@keyframes introFade{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+@keyframes bounce{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(10px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+.introTitle{
+
+    letter-spacing:4px;
+
+}
+
+.chapterText{
+
+    font-size:16px;
+
+    width:90%;
+
+}
+
+#beginJourney{
+
+    padding:14px 36px;
+
+}
+
+}
+/* ======================================================
+STYLE.CSS
+PART 3
+SCENE 2 — MEMORY PUZZLE
+====================================================== */
+
+#scene2{
+
+    background:
+    radial-gradient(
+        circle at center,
+        #2d1c08 0%,
+        #0a0908 70%,
+        #000 100%
+    );
+
+}
+
+/* ==========================
+PUZZLE LAYOUT
+========================== */
+
+.puzzleContent{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.memoryLock{
+
+    width:min(92%,430px);
+
+    margin-top:45px;
+
+    padding:45px 35px;
+
+    border-radius:25px;
+
+    background:
+    rgba(255,255,255,.06);
+
+    border:
+    1px solid rgba(255,216,107,.18);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.55);
+
+}
+
+/* ==========================
+LOCK ICON
+========================== */
+
+.lockIcon{
+
+    font-size:70px;
+
+    margin-bottom:25px;
+
+    animation:lockPulse 3s infinite;
+
+}
+
+.memoryLock p{
+
+    line-height:1.8;
+
+    opacity:.82;
+
+}
+
+/* ==========================
+INPUT
+========================== */
+
+#yearInput{
+
+    width:190px;
+
+    margin:30px auto 20px;
+
+    display:block;
+
+    padding:16px;
+
+    text-align:center;
+
+    font-size:28px;
+
+    letter-spacing:6px;
+
+    color:white;
+
+    background:
+    rgba(0,0,0,.35);
+
+    border:
+    1px solid rgba(255,216,107,.4);
+
+    border-radius:15px;
+
+    transition:.35s;
+
+}
+
+#yearInput::placeholder{
+
+    color:rgba(255,255,255,.35);
+
+}
+
+#yearInput:focus{
+
+    border-color:#ffd86b;
+
+    box-shadow:
+    0 0 25px rgba(255,216,107,.35);
+
+}
+
+/* ==========================
+BUTTON
+========================== */
+
+#unlockButton{
+
+    padding:15px 40px;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #c98a18,
+        #ffd86b
+    );
+
+    color:#1a1000;
+
+    font-weight:600;
+
+}
+
+#unlockButton:hover{
+
+    transform:
+    translateY(-3px)
+    scale(1.03);
+
+}
+
+/* ==========================
+MESSAGE
+========================== */
+
+#puzzleResponse{
+
+    min-height:35px;
+
+    margin-top:22px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:24px;
+
+}
+
+/* ==========================
+ERROR SHAKE
+========================== */
+
+.puzzleError{
+
+    animation:shake .45s;
+
+}
+
+@keyframes shake{
+
+    0%,100%{
+
+        transform:translateX(0);
+
+    }
+
+    20%{
+
+        transform:translateX(-10px);
+
+    }
+
+    40%{
+
+        transform:translateX(10px);
+
+    }
+
+    60%{
+
+        transform:translateX(-8px);
+
+    }
+
+    80%{
+
+        transform:translateX(8px);
+
+    }
+
+}
+
+/* ==========================
+LOCK PULSE
+========================== */
+
+@keyframes lockPulse{
+
+    0%,100%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+        filter:
+        drop-shadow(
+        0 0 18px #ffd86b);
+
+    }
+
+}
+
+/* ==========================
+SUCCESS EFFECT
+========================== */
+
+.unlockSuccess{
+
+    animation:unlockGlow 1.4s forwards;
+
+}
+
+@keyframes unlockGlow{
+
+    from{
+
+        box-shadow:none;
+
+    }
+
+    to{
+
+        box-shadow:
+        0 0 70px
+        rgba(255,216,107,.75);
+
+    }
+
+}
+
+/* ==========================
+MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.memoryLock{
+
+    padding:35px 25px;
+
+}
+
+#yearInput{
+
+    width:170px;
+
+    font-size:24px;
+
+}
+
+#unlockButton{
+
+    width:100%;
+
+}
+
+}
+/* ======================================================
+STYLE.CSS
+PART 4
+SCENE 3 — HEART TO SUNFLOWER
+====================================================== */
+
+#scene3{
+
+    background:
+    radial-gradient(
+        circle at center,
+        #171717 0%,
+        #050505 75%,
+        #000 100%
+    );
+
+}
+
+/* ==========================
+HEART SCENE
+========================== */
+
+.heartScene{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+}
+
+#heartContainer{
+
+    position:relative;
+
+    width:320px;
+    height:320px;
+
+    margin-top:45px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+/* ==========================
+GLOW RING
+========================== */
+
+#glowRing{
+
+    position:absolute;
+
+    width:230px;
+    height:230px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,255,255,.22),
+        transparent 70%
+    );
+
+    animation:heartGlow 3s infinite;
+
+}
+
+/* ==========================
+HEART
+========================== */
+
+#whiteHeart{
+
+    position:relative;
+
+    font-size:125px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    filter:
+    drop-shadow(0 0 25px white);
+
+    animation:heartBeat 2s infinite;
+
+    transition:1s;
+
+}
+
+#whiteHeart:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* ==========================
+HINT
+========================== */
+
+#heartHint{
+
+    position:absolute;
+
+    bottom:15px;
+
+    width:100%;
+
+    text-align:center;
+
+    font-family:'Dancing Script',cursive;
+
+    font-size:30px;
+
+    opacity:.85;
+
+}
+
+/* ==========================
+SUNFLOWER REVEAL
+========================== */
+
+#sunflowerReveal{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:1.4s ease;
+
+}
+
+#sunflowerReveal.show{
+
+    opacity:1;
+    pointer-events:auto;
+
+}
+
+/* ==========================
+REAL SUNFLOWER IMAGE
+========================== */
+
+.realSunflower{
+
+    opacity:0;
+
+    transform:scale(.5);
+
+    transition:1.8s ease;
+
+}
+
+#sunflowerReveal.show .realSunflower{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
+
+.realSunflower img{
+
+    width:260px;
+
+    max-width:80vw;
+
+    filter:
+    drop-shadow(
+        0 0 28px
+        rgba(255,215,0,.45)
+    );
+
+}
+
+/* ==========================
+MESSAGE
+========================== */
+
+#sunflowerMessage{
+
+    margin-top:35px;
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+    transition:1.5s ease .8s;
+
+}
+
+#sunflowerReveal.show #sunflowerMessage{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+#sunflowerMessage h2{
+
+    font-family:'Dancing Script',cursive;
+
+    font-size:55px;
+
+    margin-bottom:18px;
+
+}
+
+#sunflowerMessage p{
+
+    max-width:520px;
+
+    line-height:1.8;
+
+    opacity:.86;
+
+}
+
+#continueTimeline{
+
+    margin-top:30px;
+
+    padding:15px 45px;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #d99a19,
+        #ffd86b
+    );
+
+    color:#1a1000;
+
+    font-weight:600;
+
+}
+
+#continueTimeline:disabled{
+
+    opacity:.45;
+
+    cursor:not-allowed;
+
+}
+
+/* ==========================
+ANIMATIONS
+========================== */
+
+@keyframes heartBeat{
+
+    0%,100%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.12);
+
+    }
+
+}
+
+@keyframes heartGlow{
+
+    0%,100%{
+
+        transform:scale(1);
+
+        opacity:.55;
+
+    }
+
+    50%{
+
+        transform:scale(1.18);
+
+        opacity:.2;
+
+    }
+
+}
+
+/* ==========================
+MOBILE
+========================== */
+
+@media(max-width:768px){
+
+#heartContainer{
+
+    width:260px;
+    height:260px;
+
+}
+
+#whiteHeart{
+
+    font-size:95px;
+
+}
+
+.realSunflower img{
+
+    width:200px;
+
+}
+
+#sunflowerMessage h2{
+
+    font-size:42px;
+l
+}
+
+#sunflowerMessage p{
+
+    font-size:16px;
+
+    width:90%;
+
+}
+
+}
+/* ======================================================
+STYLE.CSS
+PART 5
+SCENE 4 — HER JOURNEY TIMELINE
+====================================================== */
+
+#scene4{
+
+    background:
+    linear-gradient(
+        180deg,
+        #1a1209 0%,
+        #0a0908 60%,
+        #000 100%
+    );
+
+}
+
+/* ==========================
+TIMELINE LAYOUT
+========================== */
+
+.timelineScene{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.timelineContainer{
+
+    width:min(92%,950px);
+
+    margin-top:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:28px;
+
+}
+
+/* ==========================
+MEMORY CARD
+========================== */
+
+.memoryCard{
+
+    width:min(100%,620px);
+
+    background:
+    rgba(255,255,255,.06);
+
+    border:
+    1px solid rgba(255,216,107,.18);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.45);
+
+    animation:cardAppear .8s ease;
+
+}
+
+/* ==========================
+IMAGE
+========================== */
+
+.memoryImage{
+
+    width:100%;
+
+    height:320px;
+
+    overflow:hidden;
+
+}
+
+.memoryImage img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:1s;
+
+}
+
+.memoryCard:hover img{
+
+    transform:scale(1.05);
+
+}
+
+/* ==========================
+TEXT
+========================== */
+
+.memoryInfo{
+
+    padding:28px;
+
+}
+
+.memoryInfo h3{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:38px;
+
+    margin-bottom:16px;
+
+}
+
+.memoryInfo p{
+
+    line-height:1.8;
+
+    opacity:.82;
+
+}
+
+/* ==========================
+ARROWS
+========================== */
+
+.timelineArrow{
+
+    width:58px;
+    height:58px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,216,107,.12);
+
+    color:white;
+
+    font-size:28px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.timelineArrow:hover{
+
+    background:#ffd86b;
+
+    color:#1a1200;
+
+    transform:scale(1.08);
+
+}
+
+/* ==========================
+DOTS
+========================== */
+
+.timelineDots{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:35px;
+
+}
+
+.timelineDots span{
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.25);
+
+    transition:.4s;
+
+}
+
+.timelineDots span.active{
+
+    background:#ffd86b;
+
+    box-shadow:
+    0 0 18px #ffd86b;
+
+}
+
+/* ==========================
+CONTINUE BUTTON
+========================== */
+
+#continueConstellation{
+
+    margin-top:35px;
+
+    padding:15px 42px;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #d89b1b,
+        #ffd86b
+    );
+
+    color:#1b1200;
+
+    font-weight:600;
+
+}
+
+/* ==========================
+ANIMATION
+========================== */
+
+@keyframes cardAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+.timelineContainer{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.timelineArrow{
+
+    width:48px;
+    height:48px;
+
+    font-size:22px;
+
+}
+
+.memoryImage{
+
+    height:240px;
+
+}
+
+.memoryInfo{
+
+    padding:22px;
+
+}
+
+.memoryInfo h3{
+
+    font-size:30px;
+
+}
+
+.memoryInfo p{
+
+    font-size:15px;
+
+}
+
+}
+/* ======================================================
+STYLE.CSS
+PART 6
+SCENE 5 — CONSTELLATION OF MEMORIES
+====================================================== */
+
+#scene5{
+
+    background:
+    radial-gradient(
+        circle at center,
+        #101a38 0%,
+        #050914 55%,
+        #000 100%
+    );
+
+}
+
+/* ==========================
+LAYOUT
+========================== */
+
+.constellationScene{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+}
+
+/* ==========================
+NIGHT SKY
+========================== */
+
+#nightSky{
+
+    position:relative;
+
+    width:min(92vw,900px);
+    height:460px;
+
+    margin-top:40px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(255,255,255,.02),
+        transparent 70%
+    );
+
+}
+
+#constellationCanvas{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    pointer-events:none;
+
+}
+
+/* ==========================
+MEMORY STARS
+========================== */
+
+.memoryStar{
+
+    position:absolute;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 0 12px #ffffff,
+    0 0 24px rgba(255,216,107,.6);
+
+    animation:twinkle 2s infinite;
+
+    transition:.35s;
+
+}
+
+.memoryStar:hover{
+
+    transform:scale(1.8);
+
+    box-shadow:
+    0 0 20px #ffffff,
+    0 0 45px #ffd86b;
+
+}
+
+/* ==========================
+STAR POSITIONS
+========================== */
+
+.memoryStar:nth-child(2){
+    top:15%;
+    left:50%;
+}
+
+.memoryStar:nth-child(3){
+    top:30%;
+    left:28%;
+}
+
+.memoryStar:nth-child(4){
+    top:55%;
+    left:18%;
+}
+
+.memoryStar:nth-child(5){
+    top:78%;
+    left:35%;
+}
+
+.memoryStar:nth-child(6){
+    top:78%;
+    left:65%;
+}
+
+.memoryStar:nth-child(7){
+    top:55%;
+    left:82%;
+}
+
+.memoryStar:nth-child(8){
+    top:30%;
+    left:72%;
+}
+
+.memoryStar:nth-child(9){
+    top:12%;
+    left:60%;
+}
+
+/* ==========================
+FOUND STAR
+========================== */
+
+.memoryStar.found{
+
+    background:#ffd86b;
+
+    animation:none;
+
+    box-shadow:
+    0 0 18px #ffd86b,
+    0 0 45px #ffd86b;
+
+}
+
+/* ==========================
+COUNTER
+========================== */
+
+#memoryCounter{
+
+    margin-top:25px;
+
+    font-family:'Cinzel',serif;
+
+    letter-spacing:3px;
+
+    font-size:16px;
+
+    opacity:.85;
+
+}
+
+#memoryCount{
+
+    color:#ffd86b;
+
+    font-weight:700;
+
+}
+
+/* ==========================
+CONTINUE BUTTON
+========================== */
+
+#continueMusic{
+
+    margin-top:35px;
+
+    padding:15px 45px;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #d99a19,
+        #ffd86b
+    );
+
+    color:#1b1200;
+
+    font-weight:600;
+
+    opacity:.45;
+
+}
+
+#continueMusic:not(:disabled){
+
+    opacity:1;
+
+    box-shadow:
+    0 0 30px rgba(255,216,107,.7);
+
+}
+
+/* ==========================
+MEMORY MODAL
+========================== */
+
+#memoryModal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    rgba(0,0,0,.82);
+
+    backdrop-filter:blur(10px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.45s;
+
+    z-index:9999;
+
+}
+
+#memoryModal.show{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+
+/* ==========================
+POPUP
+========================== */
+
+.memoryPopup{
+
+    position:relative;
+
+    width:min(90%,520px);
+
+    background:#111;
+
+    padding:30px;
+
+    border-radius:24px;
+
+    border:
+    1px solid rgba(255,216,107,.25);
+
+    text-align:center;
+
+    animation:popupOpen .5s ease;
+
+}
+
+.memoryPopup img{
+
+    width:100%;
+    height:280px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+}
+
+.memoryPopup h3{
+
+    margin:22px 0 12px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:38px;
+
+}
+
+.memoryPopup p{
+
+    line-height:1.8;
+
+    opacity:.82;
+
+}
+
+#closeMemory{
+
+    position:absolute;
+
+    top:12px;
+    right:18px;
+
+    background:none;
+
+    color:white;
+
+    font-size:32px;
+
+}
+
+/* ==========================
+ANIMATIONS
+========================== */
+
+@keyframes popupOpen{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        scale(.8);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        scale(1);
+
+    }
+
+}
+
+@keyframes twinkle{
+
+    0%,100%{
+
+        opacity:.4;
+        transform:scale(.8);
+
+    }
+
+    50%{
+
+        opacity:1;
+        transform:scale(1.6);
+
+    }
+
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+#nightSky{
+
+    height:360px;
+
+}
+
+.memoryPopup img{
+
+    height:220px;
+
+}
+
+.memoryPopup h3{
+
+    font-size:30px;
+
+}
+
+.memoryPopup{
+
+    padding:22px;
+
+}
+
+}
+    
